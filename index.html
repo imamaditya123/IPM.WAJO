@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Struktural Pimpinan IPM Kabupaten Wajo Periode 2023-2025</title>
+    <style>
+      :root {
+        --primary-color: #2e7d32;
+        --secondary-color: #4caf50;
+        --accent-color: #8bc34a;
+        --text-color: #333;
+        --light-color: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        font-weight: normal;
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .leader-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .leader-card {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .leader-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .leader-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .leader-info {
+        padding: 1rem;
+      }
+
+      .leader-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+        color: var(--primary-color);
+      }
+
+      .leader-position {
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .leader-bio {
+        font-size: 0.85rem;
+        color: #666;
+        display: none;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background-color: white;
+        border-radius: 10px;
+        max-width: 800px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        padding: 2rem;
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+      }
+
+      .modal-image {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+      }
+
+      .modal-name {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .modal-position {
+        font-size: 1.1rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+      }
+
+      .modal-bio {
+        margin-top: 1rem;
+        line-height: 1.7;
+      }
+
+      footer {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .leader-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        .subtitle {
+          font-size: 0.9rem;
+        }
+
+        .modal-content {
+          width: 95%;
+          padding: 1.5rem;
+        }
+
+        .modal-image {
+          max-height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img src="gambar/" alt="" />
+    <header>
+      <h1>STRUKTURAL PIMPINAN DAERAH</h1>
+      <p class="subtitle">
+        IKATAN PELAJAR MUHAMMADIYAH KABUPATEN WAJO PERIODE 2023-2025
+      </p>
+    </header>
+
+    <div class="container">
+      <div class="leader-grid" id="leaderContainer">
+        <!-- Data akan dimasukkan oleh JavaScript -->
+      </div>
+    </div>
+
+    <div class="modal" id="leaderModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <img class="modal-image" id="modalImage" src="" alt="" />
+        <h2 class="modal-name" id="modalName"></h2>
+        <h3 class="modal-position" id="modalPosition"></h3>
+        <div class="modal-bio" id="modalBio"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2023-2025 IPM Kabupaten Wajo - Ikatan Pelajar Muhammadiyah</p>
+    </footer>
+
+    <script>
+      // Data pimpinan
+      const leaders = [
+        {
+          name: "KETUA UMUM",
+          position: "MUHAMMAD AKRAM",
+          image: "gambar/AKRAM.jpg",
+          bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        },
+        {
+          name: "KETUA BIDANG ORGANISASI",
+          position: "ANDI ALIM AMIRUL FAIZ",
+          image: "gambar/FAIZ.jpg",
+          bio: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
+        },
+        {
+          name: "KETUA BIDANG PERKADERAN",
+          position: "ANDI ALIF IMAM ADITYA",
+          image: "gambar/ADITYA.jpg",
+          bio: "Incepto ne desistam- Sosial Media Instagram @imamdtya_.",
+        },
+        {
+          name: "KETUA BIDANG KAJIAN DAN DAKWAH ISLAM",
+          position: "AHMAD ASYRAFUL",
+          image: "gambar/AFUL.jpg",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+        {
+          name: "KETUA BIDANG PENGEMBANGAN ILMU PENGETAHUAN",
+          position: "RAZINMUQSITH",
+          image: "gambar/ACING.jpg",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+        {
+          name: "KETUA BIDANG IPMAWATI",
+          position: "LUTFIANA",
+          image:
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ae7253a5-6ee3-4058-943e-7e561426b17d.png",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+        {
+          name: "KETUA BIDANG ADVOKASI",
+          position: "AHMAD FAATIHUL KHAIR",
+          image: "gambar/TIHUL.jpg",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+        {
+          name: "KETUA BIDANG PENGEMBANGAN PRESTASI KEOLAHRAGAAN",
+          position: "AHMAD MAULANA",
+          image:
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ae7253a5-6ee3-4058-943e-7e561426b17d.png",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+        {
+          name: "KETUA BIDANG APRESIASI SENI DAN BUDAYA",
+          position: "ANUGRAHA",
+          image:
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ae7253a5-6ee3-4058-943e-7e561426b17d.png",
+          bio: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus.",
+        },
+      ];
+
+      // Fungsi untuk menampilkan data pimpinan
+      function displayLeaders() {
+        const container = document.getElementById("leaderContainer");
+
+        leaders.forEach((leader) => {
+          const card = document.createElement("div");
+          card.className = "leader-card";
+          card.innerHTML = `
+                    <img class="leader-image" src="${leader.image}" alt="${leader.name} - ${leader.position}">
+                    <div class="leader-info">
+                        <div class="leader-name">${leader.name}</div>
+                        <div class="leader-position">${leader.position}</div>
+                        <div class="leader-bio">${leader.bio}</div>
+                    </div>
+                `;
+
+          card.addEventListener("click", () => {
+            openModal(leader);
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      // Fungsi untuk membuka modal
+      function openModal(leader) {
+        const modal = document.getElementById("leaderModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalName = document.getElementById("modalName");
+        const modalPosition = document.getElementById("modalPosition");
+        const modalBio = document.getElementById("modalBio");
+
+        modalImage.src = leader.image;
+        modalImage.alt = `${leader.name} - ${leader.position}`;
+        modalName.textContent = leader.name;
+        modalPosition.textContent = leader.position;
+        modalBio.innerHTML = `<p><strong>Motto & sosial media:</strong></p><p>${leader.bio}</p>`;
+
+        modal.classList.add("active");
+
+        // Scroll ke atas modal saat dibuka
+        modal.scrollTop = 0;
+      }
+
+      // Fungsi untuk menutup modal
+      function closeModal() {
+        const modal = document.getElementById("leaderModal");
+        modal.classList.remove("active");
+      }
+
+      // Event listener untuk tombol close modal
+      document
+        .getElementById("closeModal")
+        .addEventListener("click", closeModal);
+
+      // Event listener untuk klik di luar modal
+      document
+        .getElementById("leaderModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeModal();
+          }
+        });
+
+      // Event listener untuk tombol ESC
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+
+      // Memuat data saat halaman siap
+      document.addEventListener("DOMContentLoaded", displayLeaders);
+    </script>
+  </body>
+</html>
+```
